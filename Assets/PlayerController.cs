@@ -8,9 +8,13 @@ public class PlayerController : MonoBehaviour {
     public Transform probe;
     public LayerMask groundMask;
 
+    public AudioClip jumpSound;
+
     Animator animator;
     Rigidbody2D body;
     SpriteRenderer sprite;
+    new AudioSource audio;
+
     bool grounded = false;
 
     // Use this for initialization
@@ -19,6 +23,7 @@ public class PlayerController : MonoBehaviour {
         animator = GetComponent<Animator>();
         body = GetComponent<Rigidbody2D>();
         sprite = GetComponent<SpriteRenderer>();
+        audio = GetComponent<AudioSource>();
 	}
 
 	// Update is called once per frame
@@ -32,11 +37,9 @@ public class PlayerController : MonoBehaviour {
         body.velocity = new Vector2(speed, body.velocity.y);
 
         grounded = Physics2D.OverlapCircle(probe.position, 0.1f, groundMask);
-
         if (grounded && Input.GetButton("Jump"))
         {
-            grounded = false;
-            body.AddForce(new Vector2(0f, jumpForce));
+            Jump();
         }
 
         bool flip = sprite.flipX ? (speed > 0) : (speed < 0);
@@ -47,5 +50,12 @@ public class PlayerController : MonoBehaviour {
 
         animator.SetFloat("speed", Mathf.Abs(speed));
         animator.SetFloat("vspeed", Mathf.Abs(body.velocity.y));
+    }
+
+    private void Jump()
+    {
+        grounded = false;
+        body.AddForce(new Vector2(0f, jumpForce));
+        audio.PlayOneShot(jumpSound);
     }
 }
