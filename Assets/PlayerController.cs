@@ -4,6 +4,7 @@ public class PlayerController : MonoBehaviour {
 
     public float maxSpeed = 2f;
     public float jumpForce = 500f;
+    public bool jumpEnabled = false;
 
     public Transform probe;
     public LayerMask groundMask;
@@ -36,10 +37,13 @@ public class PlayerController : MonoBehaviour {
         float speed = Input.GetAxis("Horizontal") * maxSpeed;
         body.velocity = new Vector2(speed, body.velocity.y);
 
-        grounded = Physics2D.OverlapCircle(probe.position, 0.1f, groundMask);
-        if (grounded && Input.GetButton("Jump"))
+        if (jumpEnabled)
         {
-            Jump();
+            grounded = Physics2D.OverlapCircle(probe.position, 0.1f, groundMask);
+            if (grounded && Input.GetButton("Jump"))
+            {
+                Jump();
+            }
         }
 
         bool flip = sprite.flipX ? (speed > 0) : (speed < 0);
