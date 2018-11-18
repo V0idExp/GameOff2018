@@ -414,13 +414,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxSpeed: 4
-  jumpForce: 1000
-  jumpEnabled: 0
-  probe: {fileID: 1484077517}
-  groundMask:
-    serializedVersion: 2
-    m_Bits: 512
-  jumpSound: {fileID: 8300000, guid: 4fa73d175f88bd6439cf03c41b5e3299, type: 3}
 --- !u!58 &215612018
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -488,6 +481,7 @@ GameObject:
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
   - component: {fileID: 519420030}
+  - component: {fileID: 519420033}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -574,6 +568,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &519420033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be7c4c5394f1a914283d852a4b3a24f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerObject: {fileID: 215612011}
 --- !u!1 &882084395
 GameObject:
   m_ObjectHideFlags: 0
